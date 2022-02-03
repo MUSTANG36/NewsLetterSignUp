@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>Signin News letter</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
 
@@ -20,20 +20,18 @@
   </head>
 
   <body class="text-center">
-    <form class="form-signin">
-      <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <form class="form-signin" action='/' method="POST">
+      <img class="mb-4" src="/poster.png" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Sign up for News Letters</h1>
+     
+      <input type="text" name="firstName"  class="form-control top" placeholder="First Name" required autofocus>
+      <input type="text" name="secondName" class="form-control middle" placeholder="Second Name" required>
+      <input type="email" name="email" class="form-control bottom" placeholder="Email" required>
       <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
+     
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Me Up!</button>
+      <p class="mt-5 mb-3 text-muted">&copy; The Dojo Production</p>
     </form>
   </body>
 </html>
