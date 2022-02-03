@@ -16,7 +16,7 @@ app.post("/",function(req,res){
     const email = req.body.email;
     const firstName = req.body.firstName;
     const secondName = req.body.secondName;
-    
+
     console.log(firstName, secondName, email);
     
 
@@ -30,3 +30,12 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+
+
+//mail chimp API key
+//60f4c9c7182927661f2a7c28c70e346a-us14
+
+
+//audience ID
+//310eed242b
