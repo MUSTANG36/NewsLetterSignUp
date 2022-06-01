@@ -84,13 +84,6 @@ app.listen(process.env.PORT, () => {
 
 app.post('/failure.html', function(req,res){
   res.redirect("/");
-
 });
 
 
-//mail chimp API key
-//60f4c9c7182927661f2a7c28c70e346a-us14
-
-
-//audience ID
-//310eed242b
