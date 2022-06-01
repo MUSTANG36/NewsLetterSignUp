@@ -76,7 +76,7 @@ app.get('/', (req, res) => {
 
 //Dynamic port that Heroku will define on the go
 // process.env.PORT
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Example app listening on port ${port}`)
 });
 
