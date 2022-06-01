@@ -7,7 +7,7 @@ var path = require('path');
 
 const request = require('request');
 const https = require("https");
-
+const port = 3000;
 
 
 //provides a path  to our a static files for nodemon local host 3000
