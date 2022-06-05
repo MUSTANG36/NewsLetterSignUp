@@ -7,7 +7,24 @@ var path = require('path');
 
 const request = require('request');
 const https = require("https");
-const port = 3000;
+const secrets = require("./secrets");
+const { json } = require('body-parser');
+
+
+//keys for heroku
+const chimp_key = process.env.CHIMP_KEY;
+const list_id = process.env.LIST_ID;
+
+// var MailChimpAPI = require('mailchimp').MailChimpAPI;
+
+// var apiKey = process.env.CHIMP_KEY;
+
+// try { 
+//   var api = new MailChimpAPI(apiKey, { version : '2.0' });
+// } catch (error) {
+//   console.log(error.message);
+// }
+
 
 
 //provides a path  to our a static files for nodemon local host 3000
@@ -42,13 +59,30 @@ app.post("/", function(req,res){
     //this will be sent to mail chimp 
     var jsonData = JSON.stringify(data);
 
-
-    const url = "https://us14.api.mailchimp.com/3.0/lists/310eed242b";
+    const url = "https://us14.api.mailchimp.com/3.0/lists/" + list_id;
 
     const options = {
       method:"POST",
-      auth:"ricky:0f4c9c7182927661f2a7c28c70e346a-us14"
+      headers:{
+        "Authorization" : "Ricardo" + chimp_key
+        
+      },
+        body:jsonData
+
     };
+
+
+
+    // const options = {
+    //   
+    //   method:"POST",
+    //   headers:{
+    //     "Authorization" : "Ricardo" + secrets['CHIMP_KEY']
+        
+    //   },
+    //     body:jsonData
+
+    // };
 
    const request = https.request(url, options ,function(response){
 
@@ -57,6 +91,8 @@ app.post("/", function(req,res){
         }else{
           res.sendFile(path.join(__dirname, '/failure.html'));
         }
+
+        console.log("status code:", res.statusCode );
 
         response.on("data",function(data){
           console.log(JSON.parse(data));
@@ -76,8 +112,10 @@ app.get('/', (req, res) => {
 
 //Dynamic port that Heroku will define on the go
 // process.env.PORT
-app.listen(process.env.PORT, () => {
-  console.log(`Example app listening on port ${port}`)
+app.listen(process.env.PORT || 3000,() => {
+  
+  console.log("starting site...Ready");
+  
 });
 
 
