@@ -10,9 +10,11 @@
   "author": "Ricardo Ochoa",
   "license": "ISC",
   "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.75",
     "body-parser": "^1.19.1",
     "dotenv": "^16.0.1",
     "express": "^4.17.2",
+    "nodemon": "^2.0.16",
     "request": "^2.88.2"
   }
 }

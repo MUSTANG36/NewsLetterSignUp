@@ -1,5 +1,6 @@
 
-
+// jshint esversion: 6
+require("dotenv").config();
 var bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
@@ -7,23 +8,17 @@ var path = require('path');
 
 const request = require('request');
 const https = require("https");
-const secrets = require("./secrets");
+
 const { json } = require('body-parser');
+const { response } = require('express');
 
 
-//keys for heroku
+
+
+//keys
 const chimp_key = process.env.CHIMP_KEY;
 const list_id = process.env.LIST_ID;
 
-// var MailChimpAPI = require('mailchimp').MailChimpAPI;
-
-// var apiKey = process.env.CHIMP_KEY;
-
-// try { 
-//   var api = new MailChimpAPI(apiKey, { version : '2.0' });
-// } catch (error) {
-//   console.log(error.message);
-// }
 
 
 
@@ -60,29 +55,15 @@ app.post("/", function(req,res){
     var jsonData = JSON.stringify(data);
 
     const url = "https://us14.api.mailchimp.com/3.0/lists/" + list_id;
+    
 
     const options = {
       method:"POST",
-      headers:{
-        "Authorization" : "Ricardo" + chimp_key
-        
-      },
-        body:jsonData
-
+      auth: "Ricardo:" + chimp_key,
+      
     };
 
-
-
-    // const options = {
-    //   
-    //   method:"POST",
-    //   headers:{
-    //     "Authorization" : "Ricardo" + secrets['CHIMP_KEY']
-        
-    //   },
-    //     body:jsonData
-
-    // };
+//secrets['API_KEY']
 
    const request = https.request(url, options ,function(response){
 
@@ -92,8 +73,7 @@ app.post("/", function(req,res){
           res.sendFile(path.join(__dirname, '/failure.html'));
         }
 
-        console.log("status code:", res.statusCode );
-
+        
         response.on("data",function(data){
           console.log(JSON.parse(data));
         })
@@ -107,6 +87,7 @@ app.post("/", function(req,res){
 
 //specify route
 app.get('/', (req, res) => {
+  //response.send(chimp_key);
   res.sendFile(__dirname + "/signup.html");
 });
 
