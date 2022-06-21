@@ -7,7 +7,7 @@ var path = require('path');
 
 const request = require('request');
 const https = require("https");
-
+const port = 3000;
 
 
 //provides a path  to our a static files for nodemon local host 3000
@@ -76,7 +76,7 @@ app.get('/', (req, res) => {
 
 //Dynamic port that Heroku will define on the go
 // process.env.PORT
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Example app listening on port ${port}`)
 });
 
@@ -84,13 +84,6 @@ app.listen(process.env.PORT || 3000, () => {
 
 app.post('/failure.html', function(req,res){
   res.redirect("/");
-
 });
 
 
-//mail chimp API key
-//60f4c9c7182927661f2a7c28c70e346a-us14
-
-
-//audience ID
-//310eed242b
